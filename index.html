@@ -1,0 +1,48 @@
+<link rel="manifest" href="manifest.json">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUP - Design Moderne</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>FocusUP</h1>
+            <p>Gère tes révisions avec style</p>
+        </header>
+
+        <section id="ajout-tache">
+            <!-- Menu de sélection du cours -->
+            <select id="choixCours">
+                <option value="📚Sémiotique générale">Sémiotique générale</option>             <option value="Exercice professionnel">Exercice professionnel</option>
+                <option value="📚 litterature Francaise">Littérature Française</option>
+                <option value="📚 lingustique Diachronique">Linguistique Diachronique</option>
+                <option value="📚 Littérature Comparée">Littérature Comparée</option>
+                <option value="📚 Anglais">Anglais</option>
+                <option value="📚Dramaturgie">Dramaturgie</option>
+                <option value="📚linguistique francaise">Linguistique Française</option>
+                <option value="📚 Autre">Autre</option>
+            </select>
+
+            <!-- Champ de saisie -->
+            <input type="text" id="inputTache" placeholder="Ex: Réviser le chapitre 1...">
+            
+            <!-- Bouton Ajouter -->
+            <button id="btnAjouter">✨ Ajouter la révision</button>
+
+        </section>
+
+        <section id="liste-section">
+            <p id="messageCompteur"></p>
+            <ul id="listeTaches"></ul>
+        </section>
+    </div>
+
+    <!-- LE SCRIPT DOIT ÊTRE ICI, JUSTE AVANT LE /BODY -->
+    <script src="script.js"></script>
+</body>
+</html>
