@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    /* Palette de couleurs modernes */
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Un beau dégradé qui prend tout l'écran */
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    border-radius: 24px;
+    /* Ombre très douce et large */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    /* Effet de flou derrière la boîte (très moderne) */
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    background: var(--bg-gradient);
+    background-clip: text;
+    -webkit-background-clip: text; /* Le texte prend la couleur du dégradé */
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+}
+
+header p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+/* Style des champs */
+#ajout-tache {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+select, input {
+    border: 2px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease; /* Animation douce */
+}
+
+select:focus, input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    outline: none;
+}
+
+button#btnAjouter {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+button#btnAjouter:hover {
+    background: #4338ca;
+    transform: translateY(-2px); /* Le bouton monte un peu */
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+
+/* Le compteur de tâches */
+#messageCompteur {
+    background: #f1f5f9;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 20px 0;
+}
+
+/* Style des tâches de révision */
+li {
+    background: white;
+    border: 1px solid #f1f5f9;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+    animation: apparition 0.4s ease-out; /* Animation à l'ajout */
+}
+
+@keyframes apparition {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+li:hover {
+    transform: scale(1.02); /* Grossit légèrement au survol */
+    border-color: var(--primary-light);
+}
+
+li span {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* Bouton supprimer moderne */
+.btn-suppr {
+    background: #fff1f2;
+    color: #be123c;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-suppr:hover {
+    background: #ffe4e6;
+    color: #e11d48;
+}
