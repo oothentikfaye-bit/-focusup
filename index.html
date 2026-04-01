@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusUP - Professional</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <title>FocusUP Pro - Etudes & IA</title>
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-    <!-- ÉCRAN 1 : ACCUEIL (SPLASH SCREEN) -->
+    <!-- ÉCRAN 1 : ACCUEIL (SPLASH) -->
     <div id="ecran-accueil" class="view">
         <div class="hero">
             <h1 class="logo-text">FocusUP</h1>
-            <p>Ton assistant d'étude intelligent</p>
-            <button class="btn-demarrer" onclick="changerVue('ecran-principal')">
-                ✨ Ajouter une révision
-            </button>
+            <p>Atteins tes objectifs de révision</p>
+            <button class="btn-demarrer" onclick="changerVue('ecran-principal')">✨ Entrer dans l'appli</button>
         </div>
     </div>
 
@@ -27,61 +25,79 @@
             <h2 id="titre-section">Révisions</h2>
         </header>
 
-        <!-- SECTION TÂCHES -->
+        <!-- SECTION 1 : TÂCHES -->
         <div id="section-taches" class="app-section">
             <div class="card-saisie">
                 <select id="choixCours">
-                    <option value="🇫🇷 Littérature">Littérature Française</option>
-                    <option value="📐 Mathématiques">Mathématiques</option>
-                    <option value="💻 Informatique">Informatique</option>
-                    <option value="📚 Autre">Autre matière</option>
+                    <option value="Littérature francaise">🇫🇷📚 Littérature Française</option>
+                    <option value="litterature comparee">📚 Littérature Comparée</option>
+                    <option value="Informatique">💻 Informatique</option>
+                    <option value="linguistique">📚 Linguistique</option>
+                    <option value="latin">📚 Latin</option>
+                    <option value="Exo pro">📚 Exo pro</option>
+                    <option value="semiotique">📚 Sémiotique</option>
+                    <option value="dramatugie"> 📚Dramaturgie</option>
+                    <option value="Autre">📚 Autre matière</option>
+                    <option value="analyse du discours">📚 Analyse du discours</option>
                 </select>
-                <input type="text" id="inputTache" placeholder="Ex: Réviser le chapitre 2...">
-                <button id="btnAjouter" class="btn-action">Ajouter à la liste</button>
+                <input type="text" id="inputTache" placeholder="Ex: Analyser Molière...">
+                <button id="btnAjouter" class="btn-action">Ajouter la tâche</button>
             </div>
-            
-            <p id="messageCompteur"></p>
             <ul id="listeTaches"></ul>
         </div>
 
-        <!-- SECTION COURS (MÉMOIRE) -->
+        <!-- SECTION 2 : FOCUS (POMODORO) -->
+        <div id="section-focus" class="app-section" style="display: none;">
+            <div class="card-focus">
+                <h3>Mode Concentration</h3>
+                <div id="timer">25:00</div>
+                <div class="timer-controls">
+                    <button onclick="startTimer()" id="btn-start" class="btn-timer-play">▶️ Démarrer</button>
+                    <button onclick="resetTimer()" class="btn-timer-reset">🔄 Reset</button>
+                </div>
+                <p id="statut-pomodoro">Travaille intensément !</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3 : COURS (NOTES) -->
         <div id="section-cours" class="app-section" style="display: none;">
             <div class="card-saisie">
                 <h3>Mémoire de stockage</h3>
                 <select id="selectCoursNotes">
-                    <option value="Litterature comparee">Littérature comparee</option>
-                    <option value="litterature francaise ">Littérature française</option>
-                    <option value="linguistique francaise">Linguistique française</option>
-                    <option value="linguistique diachronique">Linguistique diachronique</option>
-                    <option value="exo pro">Exercices professionnels</option>
-                    <option value="Analyse du discours">Analyse du discours</option>
-                    <option value="Damaturgie">Damaturgie</option>
-                    <option value="Semiotique">Sémiotique</option>
+                <option value="Littérature francaise">🇫🇷📚 Littérature Française</option>
+                    <option value="litterature comparee">📚 Littérature Comparée</option>
+                    <option value="Informatique">💻 Informatique</option>
+                    <option value="linguistique">📚 Linguistique</option>
+                    <option value="latin">📚 Latin</option>
+                    <option value="Exo pro">📚 Exo pro</option>
+                    <option value="semiotique">📚 Sémiotique</option>
+                    <option value="dramatugie"> 📚Dramaturgie</option>
+                    <option value="Autre">📚 Autre matière</option>
+                    <option value="analyse du discours">📚 Analyse du discours</option>
                 </select>
                 <textarea id="zoneNotes" placeholder="Rédige ton résumé de cours ici..."></textarea>
                 <button id="btnSauverNotes" class="btn-action">💾 Sauvegarder</button>
             </div>
         </div>
 
-        <!-- SECTION IA -->
+        <!-- SECTION 4 : IA -->
         <div id="section-ia" class="app-section" style="display: none;">
             <div class="card-saisie">
-                <h3>Assistant IA</h3>
-                <p>Analyse tes notes pour mieux comprendre.</p>
-                <button onclick="demanderIA()" class="btn-ia">🚀 Analyser avec FocusUP AI</button>
-                <div id="ia-reponse" class="box-ia">L'IA attend tes notes...</div>
+                <h3>Intelligence FocusUP</h3>
+                <button onclick="demanderIA()" class="btn-ia">🚀 Analyser mes connaissances</button>
+                <div id="ia-reponse" class="box-ia">L'IA attend tes notes de cours...</div>
             </div>
         </div>
 
         <!-- BARRE DE NAVIGATION BASSE (FIXE) -->
         <nav class="nav-bar">
             <button onclick="afficherSection('section-taches', 'Révisions')">📅</button>
+            <button onclick="afficherSection('section-focus', 'Focus')">⏱️</button>
             <button onclick="afficherSection('section-cours', 'Cours')">📚</button>
             <button onclick="afficherSection('section-ia', 'Assistant IA')">🤖</button>
         </nav>
-
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>

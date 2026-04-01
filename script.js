@@ -1,69 +1,104 @@
-// NAVIGATION DES VUES
+// --- 1. NAVIGATION ---
 function changerVue(idVue) {
     document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
     document.getElementById(idVue).style.display = 'block';
 }
 
-// NAVIGATION DES SECTIONS DANS L'APPLI
 function afficherSection(idSection, titre) {
     document.querySelectorAll('.app-section').forEach(s => s.style.display = 'none');
     document.getElementById(idSection).style.display = 'block';
     document.getElementById('titre-section').innerText = titre;
 }
 
-// GESTION DES TÂCHES
+// --- 2. GESTION DES TÂCHES ---
 let taches = JSON.parse(localStorage.getItem("mesTaches")) || [];
-const listeTachesHTML = document.getElementById('listeTaches');
 
 function afficherTaches() {
-    listeTachesHTML.innerHTML = "";
+    const liste = document.getElementById('listeTaches');
+    liste.innerHTML = "";
     taches.forEach((t, i) => {
-        listeTachesHTML.innerHTML += `
-            <li>
-                <span>${t}</span>
-                <button onclick="supprimerTache(${i})" style="border:none; background:none;">❌</button>
-            </li>`;
+        const matiere = t.split(' : ')[0]; // On récupère le nom avant les ":"
+        const li = document.createElement('li');
+        li.className = "task-" + matiere; 
+        li.innerHTML = `<span>${t}</span> <button onclick="supprimerTache(${i})" style="border:none; background:none; cursor:pointer;">❌</button>`;
+        liste.appendChild(li);
     });
 }
 
 document.getElementById('btnAjouter').addEventListener('click', () => {
-    const matiere = document.getElementById('choixCours').value;
-    const texte = document.getElementById('inputTache').value;
-    if (texte.trim() === "") return;
-
-    taches.push(matiere + " : " + texte);
+    const mat = document.getElementById('choixCours').value;
+    const txt = document.getElementById('inputTache').value;
+    if (txt.trim() === "") return;
+    taches.push(mat + " : " + txt);
     localStorage.setItem("mesTaches", JSON.stringify(taches));
     document.getElementById('inputTache').value = "";
     afficherTaches();
 });
 
-function supprimerTache(i) {
+window.supprimerTache = function(i) {
     taches.splice(i, 1);
     localStorage.setItem("mesTaches", JSON.stringify(taches));
     afficherTaches();
+};
+
+// --- 3. MINUTEUR POMODORO ---
+let temps = 25 * 60;
+let timerId = null;
+
+function startTimer() {
+    if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+        document.getElementById('btn-start').innerText = "▶️ Reprendre";
+    } else {
+        timerId = setInterval(() => {
+            temps--;
+            updateTimerDisplay();
+            if (temps <= 0) {
+                clearInterval(timerId);
+                alert("⏰ Temps écoulé ! C'est l'heure de la pause.");
+                resetTimer();
+            }
+        }, 1000);
+        document.getElementById('btn-start').innerText = "⏸️ Pause";
+    }
 }
 
-// GESTION DES NOTES
+function updateTimerDisplay() {
+    let min = Math.floor(temps / 60);
+    let sec = temps % 60;
+    document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+}
+
+function resetTimer() {
+    clearInterval(timerId);
+    timerId = null;
+    temps = 25 * 60;
+    updateTimerDisplay();
+    document.getElementById('btn-start').innerText = "▶️ Démarrer";
+}
+
+// --- 4. NOTES ET IA ---
 document.getElementById('btnSauverNotes').addEventListener('click', () => {
-    const matiere = document.getElementById('selectCoursNotes').value;
+    const mat = document.getElementById('selectCoursNotes').value;
     const notes = document.getElementById('zoneNotes').value;
-    localStorage.setItem("notes_" + matiere, notes);
-    alert("C'est enregistré !");
+    localStorage.setItem("notes_" + mat, notes);
+    alert("🚀 Résumé de " + mat + " sauvegardé !");
 });
 
-// IA
 function demanderIA() {
-    const notes = document.getElementById('zoneNotes').value;
+    const notes = document.getElementById('zoneNotes').value.toLowerCase();
     const rep = document.getElementById('ia-reponse');
-    if (notes.length < 10) {
-        rep.innerText = "Écris d'abord des notes dans l'onglet Cours !";
-        return;
-    }
-    rep.innerText = "🤖 L'IA réfléchit...";
+    if (notes.length < 10) { rep.innerText = "Écris d'abord tes cours."; return; }
+
+    rep.innerText = "🤖 FocusUP AI réfléchit...";
     setTimeout(() => {
-        rep.innerHTML = "<strong>Analyse IA :</strong> Tes notes sont bien structurées. Pense à relire les définitions clés de " + document.getElementById('selectCoursNotes').value + " demain matin.";
+        let conseil = "Ton résumé est clair. Pense à bien réviser les notions clés demain.";
+        if(notes.includes("moliere") || notes.includes("litterature")) conseil = "💡 L'IA te suggère d'analyser aussi le mouvement du Classicisme pour ton cours.";
+        if(notes.includes("pythagore") || notes.includes("maths")) conseil = "💡 L'IA te suggère de faire 2 exercices d'application pour maîtriser ce théorème.";
+        rep.innerHTML = `<strong>Conseil IA :</strong><br>${conseil}`;
     }, 1500);
 }
 
-// Initialisation
+// Lancement au démarrage
 afficherTaches();

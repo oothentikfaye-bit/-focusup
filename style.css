@@ -3,81 +3,42 @@
 :root {
     --blue-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     --bg-light: #f8fafc;
-    --text-dark: #0f172a;
+    --primary: #3b82f6;
 }
 
-body, html {
-    margin: 0; padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-light);
-    height: 100%;
-}
+body, html { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(--bg-light); height: 100%; overflow-x: hidden; }
 
-/* Écran Accueil */
-#ecran-accueil {
-    height: 100vh;
-    background: var(--blue-gradient);
-    display: flex;
-    justify-content: center; align-items: center;
-    color: white; text-align: center;
-}
+/* Accueil */
+#ecran-accueil { height: 100vh; background: var(--blue-gradient); display: flex; justify-content: center; align-items: center; color: white; text-align: center; }
+.logo-text { font-size: 3.5rem; font-weight: 800; margin: 0; }
+.btn-demarrer { margin-top: 25px; padding: 15px 30px; border-radius: 50px; border: none; background: white; color: #1e3a8a; font-weight: 700; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-.logo-text { font-size: 4rem; margin: 0; font-weight: 800; }
-.btn-demarrer {
-    margin-top: 30px; padding: 15px 35px; border-radius: 50px;
-    border: none; background: white; color: #1e3a8a;
-    font-weight: 700; font-size: 1.1rem; cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
+/* App & Sections */
+.top-bar { background: white; padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
+.back-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+.app-section { padding: 20px; padding-bottom: 100px; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Écran Principal */
-.top-bar {
-    background: white; padding: 20px;
-    display: flex; align-items: center; gap: 20px;
-    border-bottom: 1px solid #e2e8f0;
-}
+.card-saisie, .card-focus { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 12px; }
 
-.back-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+/* COULEURS DES TÂCHES */
+li { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border-left: 8px solid #cbd5e1; }
+.task-Littérature { border-left-color: #ec4899; } /* Rose */
+.task-Maths { border-left-color: #3b82f6; }      /* Bleu */
+.task-Informatique { border-left-color: #10b981; } /* Vert */
+.task-Autre { border-left-color: #64748b; }       /* Gris */
 
-.app-section { padding: 20px; padding-bottom: 100px; }
+/* MINUTEUR */
+#timer { font-size: 4rem; font-weight: 800; color: #1e3a8a; text-align: center; margin: 15px 0; }
+.timer-controls { display: flex; justify-content: center; gap: 10px; }
+.btn-timer-play { background: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
+.btn-timer-reset { background: #f1f5f9; color: #64748b; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
 
-.card-saisie {
-    background: white; padding: 25px; border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    display: flex; flex-direction: column; gap: 15px;
-}
+/* IA & BOUTONS */
+.btn-action { background: var(--blue-gradient); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; }
+.btn-ia { background: linear-gradient(135deg, #a855f7, #6366f1); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.box-ia { margin-top: 15px; padding: 15px; background: #eff6ff; border-radius: 10px; color: #1e3a8a; font-style: italic; border-left: 4px solid #a855f7; }
 
-select, input, textarea {
-    padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px;
-    font-size: 1rem; font-family: inherit;
-}
-
-.btn-action {
-    background: var(--blue-gradient); color: white;
-    border: none; padding: 15px; border-radius: 12px;
-    font-weight: 600; cursor: pointer;
-}
-
-/* Barre de navigation basse */
-.nav-bar {
-    position: fixed; bottom: 0; width: 100%;
-    background: white; border-top: 1px solid #e2e8f0;
-    display: flex; justify-content: space-around; padding: 15px 0;
-}
-
-.nav-bar button {
-    background: none; border: none; font-size: 1.5rem; cursor: pointer;
-}
-
-/* Liste des tâches */
-ul { list-style: none; padding: 0; margin-top: 20px; }
-li {
-    background: white; padding: 15px; border-radius: 12px;
-    margin-bottom: 10px; display: flex; justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-.box-ia {
-    margin-top: 20px; padding: 15px; background: #eff6ff;
-    border-radius: 10px; color: #1e3a8a; font-style: italic;
-}
+.nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 15px 0; }
+.nav-bar button { background: none; border: none; font-size: 1.5rem; cursor: pointer; opacity: 0.6; }
+.nav-bar button:active { transform: scale(0.9); opacity: 1; }
