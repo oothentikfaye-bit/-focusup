@@ -1,258 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
 :root {
-    /* Palette de couleurs modernes */
-    --primary: #4f46e5;
-    --primary-light: #818cf8;
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --text-main: #1e293b;
-    --text-muted: #64748b;
+    --blue-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    --bg-light: #f8fafc;
+    --text-dark: #0f172a;
 }
 
-body {
+body, html {
+    margin: 0; padding: 0;
     font-family: 'Inter', sans-serif;
-    /* Un beau dégradé qui prend tout l'écran */
-    background: var(--bg-gradient);
-    background-attachment: fixed;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    background-color: var(--bg-light);
+    height: 100%;
 }
 
-.container {
-    background: var(--card-bg);
-    width: 100%;
-    max-width: 480px;
-    padding: 40px;
-    border-radius: 24px;
-    /* Ombre très douce et large */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    /* Effet de flou derrière la boîte (très moderne) */
-    backdrop-filter: blur(10px);
-}
-
-header h1 {
-    font-size: 32px;
-    font-weight: 800;
-    text-align: center;
-    background: var(--bg-gradient);
-    background-clip: text;
-    -webkit-background-clip: text; /* Le texte prend la couleur du dégradé */
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 5px;
-}
-
-header p {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 15px;
-    margin-bottom: 30px;
-}
-
-/* Style des champs */
-#ajout-tache {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-select, input {
-    border: 2px solid #e2e8f0;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 15px;
-    transition: all 0.3s ease; /* Animation douce */
-}
-
-select:focus, input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-    outline: none;
-}
-
-button#btnAjouter {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-}
-
-button#btnAjouter:hover {
-    background: #4338ca;
-    transform: translateY(-2px); /* Le bouton monte un peu */
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-}
-
-/* Le compteur de tâches */
-#messageCompteur {
-    background: #f1f5f9;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--primary);
-    margin: 20px 0;
-}
-
-/* Style des tâches de révision */
-li {
-    background: white;
-    border: 1px solid #f1f5f9;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s ease;
-    animation: apparition 0.4s ease-out; /* Animation à l'ajout */
-}
-
-@keyframes apparition {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-li:hover {
-    transform: scale(1.02); /* Grossit légèrement au survol */
-    border-color: var(--primary-light);
-}
-
-li span {
-    font-weight: 500;
-    color: var(--text-main);
-}
-
-/* Bouton supprimer moderne */
-.btn-suppr {
-    background: #fff1f2;
-    color: #be123c;
-    border: none;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn-suppr:hover {
-    background: #ffe4e6;
-    color: #e11d48;
-}
-/* Navigation par onglets */
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.tabs button {
-    flex: 1;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    background: rgba(255,255,255,0.3);
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-/* Zone de texte pour les cours */
-textarea {
-    width: 100%;
-    height: 150px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    padding: 15px;
-    font-family: inherit;
-    margin: 10px 0;
-    box-sizing: border-box;
-}
-
-.btn-ia {
-    background: linear-gradient(135deg, #a855f7, #6366f1) !important;
-    width: 100%;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-/* Accueil */
+/* Écran Accueil */
 #ecran-accueil {
     height: 100vh;
+    background: var(--blue-gradient);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    color: white;
+    justify-content: center; align-items: center;
+    color: white; text-align: center;
 }
 
-.logo-grand { font-size: 3.5rem; margin-bottom: 10px; font-weight: 800; }
-.tagline { opacity: 0.9; margin-bottom: 30px; font-size: 1.2rem; }
-
-#btn-ouvrir {
-    padding: 15px 30px;
-    border-radius: 50px;
-    border: none;
-    background: white;
-    color: #9963f1;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
+.logo-text { font-size: 4rem; margin: 0; font-weight: 800; }
+.btn-demarrer {
+    margin-top: 30px; padding: 15px 35px; border-radius: 50px;
+    border: none; background: white; color: #1e3a8a;
+    font-weight: 700; font-size: 1.1rem; cursor: pointer;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Application */
-.app-header {
-    background: white;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border-bottom: 1px solid #eee;
+/* Écran Principal */
+.top-bar {
+    background: white; padding: 20px;
+    display: flex; align-items: center; gap: 20px;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.bottom-nav {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    border-top: 1px solid #eee;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-}
+.back-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
-.bottom-nav button {
-    border: none; background: none; font-weight: 600; color: #64748b;
-}
+.app-section { padding: 20px; padding-bottom: 100px; }
 
-.card {
-    background: white;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 15px;
+.card-saisie {
+    background: white; padding: 25px; border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; gap: 15px;
 }
 
-.btn-primary {
-    width: 100%; padding: 12px; background: #6366f1; color: white;
-    border: none; border-radius: 10px; margin-top: 10px; font-weight: 600;
+select, input, textarea {
+    padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px;
+    font-size: 1rem; font-family: inherit;
 }
 
-.ia-box {
-    margin-top: 20px; padding: 15px; background: #f8fafc;
-    border-radius: 10px; border-left: 4px solid #a855f7; font-style: italic;
+.btn-action {
+    background: var(--blue-gradient); color: white;
+    border: none; padding: 15px; border-radius: 12px;
+    font-weight: 600; cursor: pointer;
+}
+
+/* Barre de navigation basse */
+.nav-bar {
+    position: fixed; bottom: 0; width: 100%;
+    background: white; border-top: 1px solid #e2e8f0;
+    display: flex; justify-content: space-around; padding: 15px 0;
+}
+
+.nav-bar button {
+    background: none; border: none; font-size: 1.5rem; cursor: pointer;
+}
+
+/* Liste des tâches */
+ul { list-style: none; padding: 0; margin-top: 20px; }
+li {
+    background: white; padding: 15px; border-radius: 12px;
+    margin-bottom: 10px; display: flex; justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.box-ia {
+    margin-top: 20px; padding: 15px; background: #eff6ff;
+    border-radius: 10px; color: #1e3a8a; font-style: italic;
 }
