@@ -11,6 +11,32 @@
 
     <div class="container">
         <header>
+            <nav class="tabs">
+    <button onclick="ouvrirOnglet('revisions')">📅 Révisions</button>
+    <button onclick="ouvrirOnglet('cours')">📚 Mes Cours</button>
+</nav>
+
+<!-- Entoure ton ancienne section de révision par cette div -->
+<div id="revisions" class="tab-content">
+    <!-- Ton code actuel (Ajout tâche + Liste) -->
+</div>
+
+<!-- Ajoute cette nouvelle section pour les notes de cours -->
+<div id="cours" class="tab-content" style="display:none;">
+    <h2>Base de Connaissances</h2>
+    <select id="selectCoursNotes">
+        <option value="Informatique">Informatique</option>
+        <option value="Maths">Maths</option>
+        <option value="Litterature">Littérature</option>
+    </select>
+    <textarea id="zoneNotes" placeholder="Écris tes résumés ici..."></textarea>
+    <button id="btnSauverNotes">💾 Sauvegarder les notes</button>
+    
+    <hr>
+    <h3>🤖 Assistant IA</h3>
+    <p style="font-size: 12px; color: #666;">Demande une explication sur ce cours :</p>
+    <button onclick="demanderIA()" class="btn-ia">Explique-moi ce concept</button>
+</div>
             <h1>FocusUP</h1>
             <p>Gère tes révisions avec style</p>
         </header>

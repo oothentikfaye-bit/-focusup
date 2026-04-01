@@ -66,3 +66,40 @@ function supprimerTache(index) {
     sauvegarder();
     afficherTaches();
 }
+// Fonction pour changer d'onglet
+function ouvrirOnglet(nomOnglet) {
+    const contenus = document.querySelectorAll('.tab-content');
+    contenus.forEach(c => c.style.display = 'none'); // On cache tout
+    document.getElementById(nomOnglet).style.display = 'block'; // On affiche le bon
+}
+
+// Gestion du stockage des notes
+const zoneNotes = document.getElementById('zoneNotes');
+const selectCoursNotes = document.getElementById('selectCoursNotes');
+const btnSauverNotes = document.getElementById('btnSauverNotes');
+
+// Charger les notes quand on change de matière dans le menu
+selectCoursNotes.addEventListener('change', () => {
+    const coursSuivi = selectCoursNotes.value;
+    const notesSauvegardees = localStorage.getItem("notes_" + coursSuivi) || "";
+    zoneNotes.value = notesSauvegardees;
+});
+
+// Sauvegarder les notes
+btnSauverNotes.addEventListener('click', () => {
+    const coursSuivi = selectCoursNotes.value;
+    localStorage.setItem("notes_" + coursSuivi, zoneNotes.value);
+    alert("Notes de " + coursSuivi + " enregistrées !");
+});
+
+// --- PARTIE IA (SIMULATION) ---
+function demanderIA() {
+    const cours = selectCoursNotes.value;
+    const sujet = zoneNotes.value.substring(0, 30); // On prend le début de tes notes
+    
+    // Pour l'instant, on simule l'envoi vers une IA
+    alert("🤖 L'IA analyse tes notes de " + cours + "...");
+    
+    // Le futur : on connectera ici une API comme ChatGPT
+    window.open("https://chatgpt.com/?q=Explique moi ce concept de " + cours + " : " + sujet);
+}
