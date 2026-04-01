@@ -52,7 +52,7 @@ li { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center; 
-    min-height: 70vh; /* Prend la majorité de la hauteur de l'écran */
+    min-height: 80vh; /* Prend la majorité de la hauteur de l'écran */
     
     animation: fadeIn 0.3s;
     text-align: center; /* Centre tous les textes par défaut */
