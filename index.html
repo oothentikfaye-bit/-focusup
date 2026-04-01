@@ -8,67 +8,79 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="app">
+    <!-- ÉCRAN 1 : ACCUEIL (Minimaliste) -->
+    <div id="ecran-accueil" class="view">
+        <div class="hero">
+            <h1 class="logo-grand">FocusUP</h1>
+            <p class="tagline">Ton succès commence ici.</p>
+            <button id="btn-ouvrir" onclick="changerVue('ecran-principal')">
+                ✨ Ajouter une révision
+            </button>
+        </div>
+    </div>
 
-    <div class="container">
-        <header>
-            <nav class="tabs">
-    <button onclick="ouvrirOnglet('revisions')">📅 Révisions</button>
-    <button onclick="ouvrirOnglet('cours')">📚 Mes Cours</button>
-</nav>
-
-<!-- Entoure ton ancienne section de révision par cette div -->
-<div id="revisions" class="tab-content">
-    <!-- Ton code actuel (Ajout tâche + Liste) -->
-</div>
-
-<!-- Ajoute cette nouvelle section pour les notes de cours -->
-<div id="cours" class="tab-content" style="display:none;">
-    <h2>Base de Connaissances</h2>
-    <select id="selectCoursNotes">
-        <option value="Informatique">Informatique</option>
-        <option value="Maths">Maths</option>
-        <option value="Litterature">Littérature</option>
-    </select>
-    <textarea id="zoneNotes" placeholder="Écris tes résumés ici..."></textarea>
-    <button id="btnSauverNotes">💾 Sauvegarder les notes</button>
-    
-    <hr>
-    <h3>🤖 Assistant IA</h3>
-    <p style="font-size: 12px; color: #666;">Demande une explication sur ce cours :</p>
-    <button onclick="demanderIA()" class="btn-ia">Explique-moi ce concept</button>
-</div>
-            <h1>FocusUP</h1>
-            <p>Gère tes révisions avec style</p>
+    <!-- ÉCRAN 2 : L'APPLICATION (Le Cœur) -->
+    <div id="ecran-principal" class="view" style="display: none;">
+        <!-- Barre de navigation du haut -->
+        <header class="app-header">
+            <button onclick="changerVue('ecran-accueil')" class="btn-retour">←</button>
+            <h2>Tableau de bord</h2>
         </header>
 
-        <section id="ajout-tache">
-            <!-- Menu de sélection du cours -->
-            <select id="choixCours">
-                <option value="📚Sémiotique générale">Sémiotique générale</option>             <option value="Exercice professionnel">Exercice professionnel</option>
-                <option value="📚 litterature Francaise">Littérature Française</option>
-                <option value="📚 lingustique Diachronique">Linguistique Diachronique</option>
-                <option value="📚 Littérature Comparée">Littérature Comparée</option>
-                <option value="📚 Anglais">Anglais</option>
-                <option value="📚Dramaturgie">Dramaturgie</option>
-                <option value="📚linguistique francaise">Linguistique Française</option>
-                <option value="📚 Autre">Autre</option>
-            </select>
+        <!-- Menu de navigation (Onglets en bas comme sur iPhone) -->
+        <nav class="bottom-nav">
+            <button onclick="afficherSection('section-taches')">📅 Tâches</button>
+            <button onclick="afficherSection('section-cours')">📚 Cours</button>
+            <button onclick="afficherSection('section-ia')">🤖 IA</button>
+        </nav>
 
-            <!-- Champ de saisie -->
-            <input type="text" id="inputTache" placeholder="Ex: Réviser le chapitre 1...">
-            
-            <!-- Bouton Ajouter -->
-            <button id="btnAjouter">✨ Ajouter la révision</button>
-
-        </section>
-
-        <section id="liste-section">
+        <!-- SECTION 1 : LES TÂCHES -->
+        <section id="section-taches" class="app-section">
+            <div class="card">
+                <h3>Nouvelle Révision</h3>
+                <select id="choixCours">
+                    <option value="💻 litterature compaere">Littérature Compagnon</option>
+                    <option value="linguistique diachronique">Linguistique Diachronique</option>
+                    <option value="dramaturgie">Dramaturgie</option>
+                    <option value="exercice professionels">Exercices Professionnels</option>
+                    <option value="analyse du discours">Analyse du Discours</option>
+                    <option value="📐 litterature francaise">Littérature Française</option>
+                    <option value="linguistique francaise">Linguistique Française</option>
+                    <option value="semiotique">Sémiotique</option>
+                </select>
+                <input type="text" id="inputTache" placeholder="Quoi réviser ?">
+                <button id="btnAjouter" class="btn-primary">Ajouter</button>
+            </div>
             <p id="messageCompteur"></p>
             <ul id="listeTaches"></ul>
         </section>
-    </div>
 
-    <!-- LE SCRIPT DOIT ÊTRE ICI, JUSTE AVANT LE /BODY -->
-    <script src="script.js"></script>
+        <!-- SECTION 2 : MÉMOIRE DE STOCKAGE (COURS) -->
+        <section id="section-cours" class="app-section" style="display:none;">
+            <div class="card">
+                <h3>Mémoire de stockage</h3>
+                <select id="selectCoursNotes">
+                    <option value="Litterature">Littérature</option>
+                    <option value="Maths">Mathématiques</option>
+                    <option value="Informatique">Informatique</option>
+                </select>
+                <textarea id="zoneNotes" placeholder="Écris ton résumé ici..."></textarea>
+                <button id="btnSauverNotes" class="btn-primary">💾 Sauvegarder le résumé</button>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : ASSISTANT IA -->
+        <section id="section-ia" class="app-section" style="display:none;">
+            <div class="card ia-card">
+                <h3>Assistant IA</h3>
+                <p>Besoin d'aide pour comprendre un cours ?</p>
+                <button onclick="demanderIA()" class="btn-ia">🚀 Analyser mon résumé avec l'IA</button>
+                <div id="ia-reponse" class="ia-box">L'IA t'aidera à approfondir tes connaissances...</div>
+            </div>
+        </section>
+    </div>
+</div>
+
 </body>
 </html>
