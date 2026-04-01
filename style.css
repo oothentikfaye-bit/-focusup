@@ -42,3 +42,72 @@ li { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px;
 .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 15px 0; }
 .nav-bar button { background: none; border: none; font-size: 1.5rem; cursor: pointer; opacity: 0.6; }
 .nav-bar button:active { transform: scale(0.9); opacity: 1; }
+
+/* --- MODIFICATION POUR CENTRER LE CONTENU --- */
+.app-section {
+    padding: 20px;
+    padding-bottom: 100px; /* Espace pour la barre du bas */
+    
+    /* Ces 3 lignes permettent de centrer verticalement tout le contenu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    min-height: 70vh; /* Prend la majorité de la hauteur de l'écran */
+    
+    animation: fadeIn 0.3s;
+    text-align: center; /* Centre tous les textes par défaut */
+}
+
+.card-saisie, .card-focus {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px; /* Pour ne pas que ce soit trop large sur ordi */
+    margin: 0 auto; /* Centre la carte horizontalement */
+    box-sizing: border-box;
+}
+
+/* On centre aussi les titres à l'intérieur des cartes */
+h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #1e3a8a;
+}
+
+/* Style des champs pour qu'ils soient bien alignés au milieu */
+select, input, textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box; /* Très important pour le centrage */
+    text-align: center; /* Centre le texte écrit à l'intérieur */
+}
+
+/* On réaligne la liste des tâches pour qu'elle reste lisible */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; /* Le contenu des tâches reste à gauche pour la lecture */
+}
+
+/* --- AMÉLIORATION DU TITRE DE SECTION --- */
+#titre-section {
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 40px; /* Pour compenser la flèche retour et bien centrer */
+    font-weight: 800;
+    color: #1e3a8a;
+}
